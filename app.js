@@ -65,48 +65,29 @@ const faturamentoDiario = [
 ];
 
 let somaFaturamento = 0;
-let diasComFaturamentoAcimaDaMedia = 0;
-let maiorFaturamentoDiario = faturamentoDiario[0].valor;
+let diasSemFaturamento = 0;
 let menorFaturamentoDiario = faturamentoDiario[0].valor;
 
-// Itera pelos valores de faturamento diário para calcular as informações desejadas
 for (let i = 0; i < faturamentoDiario.length; i++) {
-    const faturamento = faturamentoDiario[i].valor;
+  const faturamento = faturamentoDiario[i].valor;
 
-    if (faturamento > maiorFaturamentoDiario) {
-        maiorFaturamentoDiario = faturamento;
-    }
-
-    if (faturamento < menorFaturamentoDiario) {
-        menorFaturamentoDiario = faturamento;
-    }
-
-   // Apenas considera os dias com faturamento para o cálculo da média
-if (faturamento > 0) {
+  if (faturamento === 0) {
+    diasSemFaturamento++;
+  } else {
     somaFaturamento += faturamento;
-    diasComFaturamento++;
+  }
+
+  if (faturamento < menorFaturamentoDiario) {
+    menorFaturamentoDiario = faturamento;
+  }
 }
 
-// Verifica se o faturamento atual é o maior ou o menor valor já encontrado
-if (faturamento > maiorFaturamento) {
-    maiorFaturamento = faturamento;
-}
-if (faturamento < menorFaturamento || menorFaturamento === null) {
-    menorFaturamento = faturamento;
-}
-});
+const mediaFaturamentoDiario = somaFaturamento / (faturamentoDiario.length - diasSemFaturamento);
 
-const mediaFaturamento = somaFaturamento / diasComFaturamento;
+console.log(`A média de faturamento diário é de R$ ${mediaFaturamentoDiario.toFixed(2)}.`);
+console.log(`O menor faturamento diário foi de R$ ${menorFaturamentoDiario.toFixed(2)}.`);
+console.log(`O número de dias sem faturamento foi de ${diasSemFaturamento} dias.`);
 
-console.log(`O menor valor de faturamento ocorrido em um dia do mês foi: R$${menorFaturamento.toFixed(2)}`);
-console.log(`O maior valor de faturamento ocorrido em um dia do mês foi: R$${maiorFaturamento.toFixed(2)}`);
-
-let diasAcimaMedia = 0;
-faturamentoMensal.forEach(({ valor }) => {
-if (valor > mediaFaturamento) {
-    diasAcimaMedia++;
-}
-});
 
 console.log(`Número de dias no mês em que o valor de faturamento diário foi superior à média mensal: ${diasAcimaMedia}`);
 
