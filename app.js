@@ -147,7 +147,7 @@ console.log("Outros: " + percentualOutros.toFixed(2) + "%");
 // a) Essa string pode ser informada através de qualquer entrada de sua preferência ou pode ser previamente definida no código;
 // b) Evite usar funções prontas, como, por exemplo, reverse;
 
-let stringOriginal = "exemplo de string para ser invertida";
+let stringOriginal = "Socorram-me, subi no ônibus em Marrocos!";
 let stringInvertida = "";
 
 for (let i = stringOriginal.length - 1; i >= 0; i--) {
